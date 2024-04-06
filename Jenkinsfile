@@ -13,7 +13,7 @@ pipeline{
         {
             steps{
                 echos "Hola world!"
-                exit 0
+                exit 1
             }
         }
         stage("third stage")
