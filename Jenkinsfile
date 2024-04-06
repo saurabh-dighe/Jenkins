@@ -12,7 +12,7 @@ pipeline{
         stage("second stage")
         {
             steps{
-                echos "Hola world!"
+                echo "Hola world!"
                 exit 1
             }
         }
