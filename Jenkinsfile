@@ -15,6 +15,12 @@ pipeline{
                 echos "Hola world!"
                 exit 0
             }
+        }
+        stage("third stage")
+        {
+            steps{
+                echo "namaste world!"
+            }
             
         }
     }
