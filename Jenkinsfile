@@ -9,5 +9,12 @@ pipeline{
             }
             
         }
+        stage("second stage")
+        {
+            steps{
+                echo "Hola world!"
+            }
+            
+        }
     }
 }
