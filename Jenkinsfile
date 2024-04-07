@@ -16,9 +16,11 @@ pipeline{
         {
             environment {
                 ENV_URL = "facebook.com"
+                CRED =credentials("SSH-CRED")
             }
             steps{
-                echo "Hola world! ${ENV_URL}"
+                sh "echo ${ENV_URL}"
+                sh "CRED"
             }         
         }
         stage("third stage")
