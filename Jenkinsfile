@@ -20,7 +20,7 @@ pipeline{
             }
             steps{
                 sh "echo ${ENV_URL}"
-            //    sh "CRED"
+               sh "${CRED}"
             }         
         }
         stage("third stage")
