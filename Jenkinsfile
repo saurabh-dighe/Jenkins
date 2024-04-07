@@ -19,10 +19,7 @@ pipeline{
             // }
             steps{
                 echo "Hola world! ${ENV_URL}"
-            }
-            environment {
-                ENV_URL = "facebook.com"
-            }            
+            }         
         }
         stage("third stage")
         {
