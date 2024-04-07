@@ -1,11 +1,13 @@
 pipeline{
     agent any
-
+    environment {
+        ENV-URL = "google.com"
+    }
     stages{
         stage("first stage")
         {
             steps{
-                echo "hello world!"
+                echo "hello world! $ENV-URL "
             }
             
         }
@@ -13,7 +15,6 @@ pipeline{
         {
             steps{
                 echo "Hola world!"
-      //          exit 1
             }
         }
         stage("third stage")
