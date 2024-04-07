@@ -9,7 +9,7 @@ pipeline{
         {
             steps{
                 sh "echo $ENV_URL"
-                sh 'echo "User is $CRED_USR"'
+                sh "echo User is $CRED_USR"
             }            
         }
         stage("second stage")
