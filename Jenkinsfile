@@ -4,6 +4,9 @@ pipeline{
         ENV_URL = "google.com"
         CRED =credentials('SSH-CRED')
     }
+    options{
+        buildDiscarder(logRotator(numToKeepStr: '1'))
+    }
     stages{
         stage("first stage")
         {
