@@ -7,6 +7,7 @@ pipeline{
     options{
         buildDiscarder(logRotator(numToKeepStr: '10'))
         disableConcurrentBuilds()
+        timeout(time: 1, unit: 'MINUTES')
     }
     stages{
         stage("first stage")
@@ -20,7 +21,7 @@ pipeline{
         {
             steps{
                 sh "env"
-                sh "sleep 60"
+                sh "sleep 120"
             } 
         }
         stage("third stage")
