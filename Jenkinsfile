@@ -15,7 +15,7 @@ pipeline{
         stage("second stage")
         {
                 environment {
-                    ENV_URL = "google.com"
+                    ENV_URL = "facebook.com"
                 }
             steps{
                 echo "Hola world! ${ENV_URL}"
