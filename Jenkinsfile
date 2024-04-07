@@ -8,14 +8,17 @@ pipeline{
         {
             steps{
                 sh "echo hello world! ${ENV_URL}"
-                sh "${env}"
+  //              sh "${env}"
             }
             
         }
         stage("second stage")
         {
+                environment {
+                    ENV_URL = "google.com"
+                }
             steps{
-                echo "Hola world!"
+                echo "Hola world! ${ENV_URL}"
             }
         }
         stage("third stage")
