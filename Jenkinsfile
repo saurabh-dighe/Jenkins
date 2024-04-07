@@ -6,6 +6,7 @@ pipeline{
     }
     options{
         buildDiscarder(logRotator(numToKeepStr: '10'))
+        disableConcurrentBuilds(abortPrevious: true)
     }
     stages{
         stage("first stage")
