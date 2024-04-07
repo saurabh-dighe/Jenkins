@@ -2,6 +2,7 @@ pipeline{
     agent any
     environment {
         ENV_URL = "google.com"
+        CRED =credentials('SSH-CRED')
     }
     stages{
         stage("first stage")
@@ -16,11 +17,10 @@ pipeline{
         {
             environment {
                 ENV_URL = "facebook.com"
-                CRED =credentials("SSH-CRED")
             }
             steps{
                 sh "echo ${ENV_URL}"
-                sh "CRED"
+            //    sh "CRED"
             }         
         }
         stage("third stage")
