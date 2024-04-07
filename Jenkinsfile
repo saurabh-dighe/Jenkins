@@ -24,7 +24,7 @@ pipeline{
         stage("third stage")
         {
             steps{
-                echo "namaste world!"
+                sh "env"
             }
             
         }
