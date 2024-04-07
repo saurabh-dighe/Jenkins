@@ -5,7 +5,7 @@ pipeline{
         CRED =credentials('SSH-CRED')
     }
     options{
-        buildDiscarder(logRotator(numToKeepStr: '1'))
+        buildDiscarder(logRotator(numToKeepStr: '10'))
     }
     stages{
         stage("first stage")
