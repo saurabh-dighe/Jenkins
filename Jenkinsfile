@@ -8,27 +8,15 @@ pipeline{
         stage("first stage")
         {
             steps{
-                sh "echo hello world! ${ENV_URL}"
-  //              sh "${env}"
-            }
-            
+                sh "echo ${ENV_URL}"
+                sh 'echo "User is $CRED_USR"'
+            }            
         }
         stage("second stage")
         {
-            environment {
-                ENV_URL = "facebook.com"
-            }
-            steps{
-                sh "echo ${ENV_URL}"
-                sh "${CRED_PSW}"
-            }         
-        }
-        stage("third stage")
-        {
             steps{
                 sh "env"
-            }
-            
+            } 
         }
     }
 }
