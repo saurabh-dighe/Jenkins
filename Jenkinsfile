@@ -19,7 +19,14 @@ pipeline{
         {
             steps{
                 sh "env"
+                sh "sleep 60"
             } 
         }
+        stage("third stage")
+        {
+            steps{
+                sh "echo Hii"
+            } 
+        }        
     }
 }
