@@ -57,18 +57,21 @@ pipeline{
                 {
                     steps{
                         sh "echo Unit testing"
+                        sh "sleep 10"
                     } 
                 } 
                 stage("Functional testing")
                 {
                     steps{
                         sh "echo Functional testing"
+                        sh "sleep 10"
                     } 
                 } 
                 stage("Integration testing")
                 {
                     steps{
                         sh "echo Integration testing"
+                        sh "sleep 10"
                     } 
                 }                                 
             }
