@@ -12,15 +12,11 @@ pipeline{
 
     // parameters {
     //     string(name: 'PERSON', defaultValue: 'Saurabh', description: 'Who should I say hello to?')
-
     //     text(name: 'Build Desc', defaultValue: '', description: 'Enter some information about the job')
-
     //     booleanParam(name: 'TOGGLE', defaultValue: true, description: 'Toggle this value')
-
     //     choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
-
-    //     password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter a password')
     // }
+
     tools{
         maven 'mvn-390'
     }
@@ -53,6 +49,29 @@ pipeline{
             steps{
                 sh "echo Hii"
             } 
-        }        
+        }   
+        stage("Testing")
+        {
+            parallel{   
+                stage("Unit testing")
+                {
+                    steps{
+                        sh "echo Unit testing""
+                    } 
+                } 
+                stage("Functional testing")
+                {
+                    steps{
+                        sh "echo Functional testing"
+                    } 
+                } 
+                stage("Integration testing")
+                {
+                    steps{
+                        sh "echo Integration testing""
+                    } 
+                }                                 
+            }
+        }            
     }
 }
