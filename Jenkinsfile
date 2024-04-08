@@ -56,7 +56,7 @@ pipeline{
                 stage("Unit testing")
                 {
                     steps{
-                        sh "echo Unit testing""
+                        sh "echo Unit testing"
                     } 
                 } 
                 stage("Functional testing")
@@ -68,7 +68,7 @@ pipeline{
                 stage("Integration testing")
                 {
                     steps{
-                        sh "echo Integration testing""
+                        sh "echo Integration testing"
                     } 
                 }                                 
             }
