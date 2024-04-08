@@ -33,7 +33,7 @@ pipeline{
         {
             steps{
                 sh "env"
-                sh "sleep 120"
+                sh "sleep 1"
             } 
         }
         stage("third stage")
