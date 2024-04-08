@@ -36,7 +36,7 @@ pipeline{
         stage("second stage")
         {
             tools{
-                maven 'mvn-390'
+                maven 'mvn-395'
             }
             steps{
                 sh "env"
