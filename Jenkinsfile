@@ -1,5 +1,5 @@
 pipeline{
-    agent any
+    agent 'ws'
     environment {
         ENV_URL = "google.com"
         CRED =credentials('SSH-CRED')
@@ -22,12 +22,14 @@ pipeline{
     }
     triggers {
 //        cron ('*/1 * * * *')
-        pollSCM ('*/1 * * * *')
+//        pollSCM ('*/1 * * * *')
         }
     stages{
         stage("first stage")
         {
             steps{
+                sh "echo host IP add is"
+                sh "hostname -I"
                 sh "echo $ENV_URL"
                 sh "echo User is $CRED_USR"
                 sh "mvn --version"
