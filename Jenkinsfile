@@ -22,7 +22,7 @@ pipeline{
     }
     triggers {
 //        cron ('*/1 * * * *')
-//        pollSCM ('*/1 * * * *')
+          pollSCM ('*/1 * * * *')
         }
     stages{
         stage("first stage")
