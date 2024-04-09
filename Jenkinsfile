@@ -21,9 +21,9 @@ pipeline{
         maven 'mvn-390'
     }
     triggers {
-//        cron ('*/1 * * * *')
-          pollSCM ('*/1 * * * *')
-        }
+//      cron ('*/1 * * * *')
+        pollSCM ('*/1 * * * *')
+    }
     stages{
         stage("first stage")
         {
