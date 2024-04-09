@@ -1,5 +1,5 @@
 pipeline{
-    agent {ws}
+    agent {label 'ws'}
     environment {
         ENV_URL = "google.com"
         CRED =credentials('SSH-CRED')
