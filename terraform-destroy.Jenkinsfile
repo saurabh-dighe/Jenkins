@@ -11,19 +11,6 @@ pipeline {
         choice(name: 'ENV', choices: ['dev', 'prod'], description: 'Select the environment')
     }
     stages {
-        stage('Terraform VPC'){
-            steps{
-                dir('VPC') {
-                git branch: 'main', url: 'https://github.com/saurabh-dighe/terraform-vpc.git'
-                        sh '''
-                            terrafile -f ./env-dev/Terrafile
-                            terraform init --backend-config=env-${ENV}/backend-${ENV}.tfvars -reconfigure
-                            terraform destroy -auto-approve -var-file=env-${ENV}/${ENV}.tfvars 
-                        '''
-                }
-            }
-        }
-
         stage('Terraform Databases'){
             steps{
                 dir('DB') {
@@ -36,6 +23,22 @@ pipeline {
                 }
             }
         }
-
+        stage('Terraform VPC'){
+            steps{
+                dir('VPC') {
+                git branch: 'main', url: 'https://github.com/saurabh-dighe/terraform-vpc.git'
+                        sh '''
+                            terrafile -f ./env-dev/Terrafile
+                            terraform init --backend-config=env-${ENV}/backend-${ENV}.tfvars -reconfigure
+                            terraform destroy -auto-approve -var-file=env-${ENV}/${ENV}.tfvars 
+                        '''
+                }
+            }
+        }
     }
+    post{
+        always {
+                cleanWs()
+            }  
+        }
 }
