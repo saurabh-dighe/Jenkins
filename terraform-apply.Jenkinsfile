@@ -28,7 +28,7 @@ pipeline {
         stage('Terraform Databases'){
             steps{
                 dir('DB') {
-                git branch: 'main', url: 'https://github.com/saurabh-dighe/terraform-vpc.git'
+                git branch: 'main', url: 'https://github.com/saurabh-dighe/terraform-databases.git'
                         sh '''
                             terrafile -f env-dev/Terrafile
                             terraform init --backend-config=env-${ENV}/${ENV}-backend.tfvars -reconfigure
