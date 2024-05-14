@@ -11,18 +11,31 @@ pipeline {
         choice(name: 'ENV', choices: ['dev', 'prod'], description: 'Select the environment')
     }
     stages {
-        stage('Terraform Databases'){
+        stage('Terraform ALB'){
             steps{
                 dir('DB') {
-                git branch: 'main', url: 'https://github.com/saurabh-dighe/terraform-databases.git'
+                git branch: 'main', url: 'https://github.com/saurabh-dighe/terraform-loadbalancers.git'
                         sh '''
                             terrafile -f ./env-dev/Terrafile
                             terraform init --backend-config=env-${ENV}/backend-${ENV}.tfvars -reconfigure
-                            terraform destroy -auto-approve -var-file=env-${ENV}/${ENV}.tfvars 
+                            terraform plan -var-file=env-${ENV}/${ENV}.tfvars -var ENV=${ENV}
+                            terraform apply -auto-approve -var-file=env-${ENV}/${ENV}.tfvars 
                         '''
                 }
             }
         }
+        // stage('Terraform Databases'){
+        //     steps{
+        //         dir('DB') {
+        //         git branch: 'main', url: 'https://github.com/saurabh-dighe/terraform-databases.git'
+        //                 sh '''
+        //                     terrafile -f ./env-dev/Terrafile
+        //                     terraform init --backend-config=env-${ENV}/backend-${ENV}.tfvars -reconfigure
+        //                     terraform destroy -auto-approve -var-file=env-${ENV}/${ENV}.tfvars 
+        //                 '''
+        //         }
+        //     }
+        // }
         stage('Terraform VPC'){
             steps{
                 dir('VPC') {
