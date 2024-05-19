@@ -5,7 +5,7 @@ pipeline {
         //ansiColor('xterm')
         buildDiscarder(logRotator(numToKeepStr: '5')) 
         disableConcurrentBuilds()
-        timeout(time: 30, unit: 'MINUTES')
+        timeout(time: 50, unit: 'MINUTES')
     }
     parameters {
         choice(name: 'ENV', choices: ['dev', 'prod'], description: 'Select the environment')
