@@ -138,7 +138,6 @@ pipeline {
 
                     sh ''' 
                         cd mutable-infra
-                        sleep 30
                         terrafile -f ./env-${ENV}/Terrafile
                         terraform init --backend-config=env-${ENV}/backend-${ENV}.tfvars -reconfigure
                         terraform plan -var APP_VERSION=001 --var-file env-${ENV}/${ENV}.tfvars
