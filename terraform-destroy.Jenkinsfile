@@ -11,7 +11,7 @@ pipeline {
         choice(name: 'ENV', choices: ['dev', 'prod'], description: 'Select the environment')
     }
     stages {
-        stage('Terraform App Infra'){
+        stage('Backend'){
             parallel{
                 stage('Catalogue'){
                     steps {

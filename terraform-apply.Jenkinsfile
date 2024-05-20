@@ -51,7 +51,7 @@ pipeline {
                 }
             }
         }
-        stage('Terraform App Infra'){
+        stage('Backend'){
             parallel{
                 stage('Catalogue'){
                     steps {
