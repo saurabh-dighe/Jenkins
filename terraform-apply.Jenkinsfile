@@ -128,24 +128,24 @@ pipeline {
                         }
                     }
                 }
-                stage('Frontend'){
-                    steps {
-                        dir('frontend') {   
-                            git branch: 'main', url: 'https://github.com/saurabh-dighe/frontend.git'
+                
+            }
+        }
+        stage('Frontend'){
+            steps {
+                dir('frontend') {   
+                    git branch: 'main', url: 'https://github.com/saurabh-dighe/frontend.git'
 
-                            sh ''' 
-                                cd mutable-infra
-                                sleep 30
-                                terrafile -f ./env-${ENV}/Terrafile
-                                terraform init --backend-config=env-${ENV}/backend-${ENV}.tfvars -reconfigure
-                                terraform plan -var APP_VERSION=001 --var-file env-${ENV}/${ENV}.tfvars
-                                terraform apply -auto-approve -var APP_VERSION=001 --var-file env-${ENV}/${ENV}.tfvars
-                            ''' 
-                        }
-                    }
+                    sh ''' 
+                        cd mutable-infra
+                        sleep 30
+                        terrafile -f ./env-${ENV}/Terrafile
+                        terraform init --backend-config=env-${ENV}/backend-${ENV}.tfvars -reconfigure
+                        terraform plan -var APP_VERSION=001 --var-file env-${ENV}/${ENV}.tfvars
+                        terraform apply -auto-approve -var APP_VERSION=001 --var-file env-${ENV}/${ENV}.tfvars
+                    ''' 
                 }
             }
         }
-
     }
 }
