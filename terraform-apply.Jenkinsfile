@@ -14,6 +14,7 @@ pipeline {
         stage('Terraform VPC'){
             steps{
                 dir('VPC') {
+                        sh "rm -rf ./VPC/*"
                 git branch: 'main', url: 'https://github.com/saurabh-dighe/terraform-vpc.git'
                         sh '''
                             terrafile -f ./env-dev/Terrafile
