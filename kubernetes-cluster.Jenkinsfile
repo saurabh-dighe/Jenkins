@@ -12,9 +12,12 @@ pipeline {
         choice(name: 'ACTION', choices: ['create', 'destroy'], description: 'Action to perform')
     }
     stages {
-        stage('Cluster Infra') {
+        stage('Cluster Infra Creation') {
+            when {
+                expression { params.ACTION == 'create'}
+            }
             steps {
-                if (params.ACTION == 'create') {        
+                    
                     sh '''
                         sh rm -rf
                         cd /home/centos/kubernetes/eks'
@@ -22,17 +25,24 @@ pipeline {
                         terraform init -backend-config=env-dev/dev-backend.tfvars -reconfigure
                         terraform apply -auto-approve -var-file=env-dev/dev.tfvars
                     '''
-                }
-                else if (params.ACTION == 'destroy') {        
-                    sh '''
-                        sh rm -rf
-                        cd /home/centos/kubernetes/eks'
-                        terrafile -f  env-dev/Terrafile
-                        terraform init -backend-config=env-dev/dev-backend.tfvars -reconfigure
-                        terraform destroy -auto-approve -var-file=env-dev/dev.tfvars
-                    '''
-                }
             }
+            when {
+                expression { params.ACTION == 'create'}
+            }
+        }
+        stage('Cluster Infra Deletion') {
+            when {
+                expression { params.ACTION == 'create'}
+            }
+            steps {        
+                sh '''
+                    sh rm -rf
+                    cd /home/centos/kubernetes/eks'
+                    terrafile -f  env-dev/Terrafile
+                    terraform init -backend-config=env-dev/dev-backend.tfvars -reconfigure
+                    terraform destroy -auto-approve -var-file=env-dev/dev.tfvars
+                '''
+            } 
         }
     }
 }
