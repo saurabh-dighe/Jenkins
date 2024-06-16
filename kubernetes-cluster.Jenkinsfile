@@ -16,10 +16,9 @@ pipeline {
             when {
                 expression { params.ACTION == 'create'}
             }
-            steps {  
-                sh 'pwd'
+            steps {  '
                 sh '''
-                    cd /home/centos/kubernetes/eks'
+                    cd /home/centos/kubernetes/eks
                     terrafile -f  env-dev/Terrafile
                     terraform init -backend-config=env-dev/dev-backend.tfvars -reconfigure
                     terraform apply -auto-approve -var-file=env-dev/dev.tfvars
@@ -33,7 +32,7 @@ pipeline {
             steps {        
                 sh '''
                     rm -rf
-                    cd /home/centos/kubernetes/eks'
+                    cd /home/centos/kubernetes/eks
                     terrafile -f  env-dev/Terrafile
                     terraform init -backend-config=env-dev/dev-backend.tfvars -reconfigure
                     terraform destroy -auto-approve -var-file=env-dev/dev.tfvars
