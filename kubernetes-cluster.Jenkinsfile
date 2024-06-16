@@ -8,10 +8,9 @@ pipeline {
         disableConcurrentBuilds()
         timeout(time: 50, unit: 'MINUTES')
     }
-    properties([
-        parameters([
-            choice(name: 'ACTION', choices: ['create', 'destroy'], description: 'Action to perform')
-        ])
+    parameters{
+        choice(name: 'ACTION', choices: ['create', 'destroy'], description: 'Action to perform')
+    }
     stages {
         stage('Cluster Infra') {
             steps {
