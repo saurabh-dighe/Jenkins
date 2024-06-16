@@ -26,13 +26,10 @@ pipeline {
                         terraform apply -auto-approve -var-file=env-dev/dev.tfvars
                     '''
             }
-            when {
-                expression { params.ACTION == 'create'}
-            }
         }
         stage('Cluster Infra Deletion') {
             when {
-                expression { params.ACTION == 'create'}
+                expression { params.ACTION == 'destroy'}
             }
             steps {        
                 sh '''
