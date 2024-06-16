@@ -18,6 +18,7 @@ pipeline {
             }
             steps {
                 sh '''
+                    cd /home/centos/kubernetes/eks
                     sudo make create
                 '''
             }
