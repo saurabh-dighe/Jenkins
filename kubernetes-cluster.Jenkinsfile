@@ -16,10 +16,8 @@ pipeline {
             when {
                 expression { params.ACTION == 'create'}
             }
-            steps {
-                    
+            steps {  
                     sh '''
-                        sh rm -rf
                         cd /home/centos/kubernetes/eks'
                         terrafile -f  env-dev/Terrafile
                         terraform init -backend-config=env-dev/dev-backend.tfvars -reconfigure
@@ -33,7 +31,7 @@ pipeline {
             }
             steps {        
                 sh '''
-                    sh rm -rf
+                    rm -rf
                     cd /home/centos/kubernetes/eks'
                     terrafile -f  env-dev/Terrafile
                     terraform init -backend-config=env-dev/dev-backend.tfvars -reconfigure
