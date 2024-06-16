@@ -16,7 +16,7 @@ pipeline {
             when {
                 expression { params.ACTION == 'create'}
             }
-            steps {  '
+            steps {
                 sh '''
                     cd /home/centos/kubernetes/eks
                     terrafile -f  env-dev/Terrafile
