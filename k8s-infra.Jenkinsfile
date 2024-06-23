@@ -51,7 +51,7 @@ pipeline {
                         terrafile -f ./env-dev/Terrafile
                         terraform init --backend-config=env-${ENV}/backend-${ENV}.tfvars -reconfigure
                         terraform plan -var-file=env-${ENV}/${ENV}.tfvars -var ENV=${ENV}
-                        terraform destroy -auto-approve -var-file=env-${ENV}/${ENV}.tfvars 
+                        terraform apply -auto-approve -var-file=env-${ENV}/${ENV}.tfvars 
                     '''
                 }
             }
