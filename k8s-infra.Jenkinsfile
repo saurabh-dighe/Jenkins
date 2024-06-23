@@ -17,6 +17,7 @@ pipeline {
                         sh "rm -rf ./VPC/*"
                 git branch: 'main', url: 'https://github.com/saurabh-dighe/terraform-vpc.git'
                         sh '''
+                            rm -rf
                             terrafile -f ./env-dev/Terrafile
                             terraform init --backend-config=env-${ENV}/backend-${ENV}.tfvars -reconfigure
                             terraform plan -var-file=env-${ENV}/${ENV}.tfvars -var ENV=${ENV}
@@ -31,6 +32,7 @@ pipeline {
                 dir('DB') {
                 git branch: 'main', url: 'https://github.com/saurabh-dighe/terraform-databases.git'
                         sh '''
+                            rm -rf
                             terrafile -f ./env-dev/Terrafile
                             terraform init --backend-config=env-${ENV}/backend-${ENV}.tfvars -reconfigure
                             terraform plan -var-file=env-${ENV}/${ENV}.tfvars -var ENV=${ENV}
