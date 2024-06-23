@@ -46,7 +46,8 @@ pipeline {
                 dir('k8s') {
                 git branch: 'main', url: 'https://github.com/saurabh-dighe/kubernetes.git'
                         sh '''
-                            rm -rf
+                            cd eks
+                            pwd
                             terrafile -f ./env-dev/Terrafile
                             terraform init --backend-config=env-${ENV}/backend-${ENV}.tfvars -reconfigure
                             terraform plan -var-file=env-${ENV}/${ENV}.tfvars -var ENV=${ENV}
