@@ -44,7 +44,7 @@ pipeline {
         stage('Terraform Databases'){
             steps{
                 dir('DB') {
-                    sh "rm -rf ./VPC/*"
+                    sh "rm -rf ./DB/*"
                 git branch: 'main', url: 'https://github.com/saurabh-dighe/terraform-databases.git'
                     sh '''
                         rm -rf
