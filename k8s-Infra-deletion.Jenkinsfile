@@ -47,6 +47,7 @@ pipeline {
                     sh "rm -rf ./DB/*"
                 git branch: 'main', url: 'https://github.com/saurabh-dighe/terraform-databases.git'
                     sh '''
+                        #Romove cache
                         rm -rf
                         terrafile -f ./env-dev/Terrafile
                         terraform init --backend-config=env-${ENV}/backend-${ENV}.tfvars -reconfigure
