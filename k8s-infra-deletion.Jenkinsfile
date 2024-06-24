@@ -11,12 +11,13 @@ pipeline {
         choice(name: 'ENV', choices: ['dev', 'prod'], description: 'Select the environment')
     }
     stages {
-        stage('Terraform VPC'){
+        stage('Terraform Databases'){
             steps{
-                dir('VPC') {
-                    sh "rm -rf ./VPC/*"
-                git branch: 'main', url: 'https://github.com/saurabh-dighe/terraform-vpc.git'
+                dir('DB') {
+                    sh "rm -rf ./DB/*"
+                git branch: 'main', url: 'https://github.com/saurabh-dighe/terraform-databases.git'
                     sh '''
+                        #Romove cache
                         rm -rf
                         terrafile -f ./env-dev/Terrafile
                         terraform init --backend-config=env-${ENV}/backend-${ENV}.tfvars -reconfigure
@@ -26,7 +27,6 @@ pipeline {
                 }
             }
         }
-
         stage('Kubernetes Infra'){
             steps{
                 dir('k8s') {
@@ -41,13 +41,12 @@ pipeline {
                 }
             }
         }
-        stage('Terraform Databases'){
+        stage('Terraform VPC'){
             steps{
-                dir('DB') {
-                    sh "rm -rf ./DB/*"
-                git branch: 'main', url: 'https://github.com/saurabh-dighe/terraform-databases.git'
+                dir('VPC') {
+                    sh "rm -rf ./VPC/*"
+                git branch: 'main', url: 'https://github.com/saurabh-dighe/terraform-vpc.git'
                     sh '''
-                        #Romove cache
                         rm -rf
                         terrafile -f ./env-dev/Terrafile
                         terraform init --backend-config=env-${ENV}/backend-${ENV}.tfvars -reconfigure
